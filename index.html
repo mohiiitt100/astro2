@@ -374,7 +374,7 @@
       </div>
     </div>
 
- <!-- Header & Navigation -->
+<!-- Header & Navigation -->
 <header class="fixed w-full z-50 bg-opacity-20 bg-primary backdrop-blur-md border-b border-[#E6E6FA30]">
   <div class="container mx-auto px-6 py-4">
     <div class="flex justify-between items-center">
@@ -386,29 +386,40 @@
       </div>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex space-x-8">
+      <nav class="hidden md:flex space-x-8 items-center relative">
         <a href="#horoscope" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Horoscope</a>
-        <a href="#about" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">about</a>
-        <a href="#services" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Services</a>
-        <a href="#astrologers" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Live Connect</a>
-        <a href="#testimonials" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Testimonials</a>
-        <a href="#contact" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Contact</a>
+
+        <!-- About Dropdown -->
+        <div class="relative group">
+          <button class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">
+            About
+          </button>
+          <div class="absolute hidden group-hover:block bg-[#1e1e2f] border border-[#FFD70040] rounded-md mt-2 w-52 shadow-lg z-50">
+            <a href="about-vipin.html" class="block px-4 py-2 text-[#E6E6FA] hover:bg-[#FFD70020] hover:text-[#FFD700] transition">Swami Vipin Vyas</a>
+            <a href="about-divya.html" class="block px-4 py-2 text-[#E6E6FA] hover:bg-[#FFD70020] hover:text-[#FFD700] transition">Divya Tripathi</a>
+          </div>
+        </div>
+
+        <a href="#services" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition">Services</a>
+        <a href="#astrologers" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition">Live Connect</a>
+        <a href="#testimonials" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition">Testimonials</a>
+        <a href="#contact" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition">Contact</a>
       </nav>
 
       <!-- Right Buttons & Hamburger -->
       <div class="flex items-center space-x-4">
-        <div class="w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition-colors duration-300">
+        <div class="w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition">
           <i class="ri-search-line ri-lg"></i>
         </div>
-        <button class="hidden md:block px-4 py-2 text-[#E6E6FA] border border-[#E6E6FA50] rounded-button hover:border-[#FFD700] hover:text-[#FFD700] transition-colors duration-300 whitespace-nowrap">
+        <button class="hidden md:block px-4 py-2 text-[#E6E6FA] border border-[#E6E6FA50] rounded-button hover:border-[#FFD700] hover:text-[#FFD700] transition">
           Sign In
         </button>
-        <button class="hidden md:block px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button">
+        <button class="hidden md:block px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition">
           Sign Up
         </button>
 
-        <!-- Hamburger Icon (Mobile Only) -->
-        <div id="mobileMenuBtn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition-colors duration-300">
+        <!-- Hamburger Icon -->
+        <div id="mobileMenuBtn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition">
           <i class="ri-menu-line ri-lg"></i>
         </div>
       </div>
@@ -417,39 +428,46 @@
 
   <!-- Mobile Navigation Menu -->
   <div id="mobileNav" class="md:hidden hidden flex flex-col bg-primary/90 backdrop-blur-md border-t border-[#E6E6FA30] px-6 py-4 space-y-4">
-    <a href="#horoscope" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Horoscope</a>
-    <a href="#about" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">about</a>
-    <a href="#services" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Services</a>
-    <a href="#astrologers" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Live Connect</a>
-    <a href="#testimonials" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Testimonials</a>
-    <a href="#contact" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Contact</a>
-    <button class="px-4 py-2 text-[#E6E6FA] border border-[#E6E6FA50] rounded-button hover:border-[#FFD700] hover:text-[#FFD700] transition-colors duration-300">
+    <a href="#horoscope" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Horoscope</a>
+
+    <!-- About Dropdown in Mobile -->
+    <details class="text-[#E6E6FA]">
+      <summary class="cursor-pointer hover:text-[#FFD700] transition">About</summary>
+      <div class="pl-4 mt-2 space-y-1">
+        <a href="about-vipin.html" class="block hover:text-[#FFD700]">Swami Vipin Vyas</a>
+        <a href="about-divya.html" class="block hover:text-[#FFD700]">Divya Tripathi</a>
+      </div>
+    </details>
+
+    <a href="#services" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Services</a>
+    <a href="#astrologers" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Live Connect</a>
+    <a href="#testimonials" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Testimonials</a>
+    <a href="#contact" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Contact</a>
+    <button class="px-4 py-2 text-[#E6E6FA] border border-[#E6E6FA50] rounded-button hover:border-[#FFD700] hover:text-[#FFD700] transition">
       Sign In
     </button>
-    <button class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300">
+    <button class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition">
       Sign Up
     </button>
   </div>
 </header>
 
-
-<!-- Toggle mobile scrept -->
+<!-- Toggle mobile script -->
 <script>
   const menuBtn = document.getElementById('mobileMenuBtn');
   const mobileNav = document.getElementById('mobileNav');
 
-  // Toggle on hamburger click
   menuBtn.addEventListener('click', () => {
     mobileNav.classList.toggle('hidden');
   });
 
-  // Close mobile menu on any link/button click inside it
   mobileNav.querySelectorAll('a, button').forEach((item) => {
     item.addEventListener('click', () => {
       mobileNav.classList.add('hidden');
     });
   });
 </script>
+
 
 
 <!-- Hero Section -->

@@ -153,20 +153,25 @@
           opacity: 1;
       }
 
-      .loading-screen {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: #1A1B4B;
-          z-index: 9999;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: opacity 0.5s ease, visibility 0.5s ease;
-      }
+      /* loadingsecreen */
 
+     .loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000; /* optional background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-image {
+  width: 150px; /* adjust as needed */
+  height: auto;
+}
       .zodiac-wheel {
           width: 150px;
           height: 150px;
@@ -304,8 +309,11 @@
   <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
-      <div class="zodiac-wheel">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <div class="zodiac-wheel">
+    <!-- Replace SVG with your custom image -->
+    <img src="piclumen-1749724188230-removebg-preview.png" alt="Loading Image" class="loading-image" />
+  </div>
+</div>
           <circle
             cx="50"
             cy="50"

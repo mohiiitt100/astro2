@@ -374,7 +374,7 @@
       </div>
     </div>
 
- <!-- Header & Navigation -->
+<!-- Header & Navigation -->
 <header class="fixed w-full z-50 bg-opacity-20 bg-primary backdrop-blur-md border-b border-[#E6E6FA30]">
   <div class="container mx-auto px-6 py-4">
     <div class="flex justify-between items-center">
@@ -468,23 +468,6 @@
   });
 </script>
 
-<!-- Script to toggle mobile menu -->
-<script>
-  const menuBtn = document.getElementById('mobileMenuBtn');
-  const mobileNav = document.getElementById('mobileNav');
-
-  // Hamburger click pe menu open ya close hoga
-  menuBtn.addEventListener('click', () => {
-    mobileNav.classList.toggle('hidden');
-  });
-
-  // Mobile menu ke kisi bhi link ya button pe click karte hi menu band ho jaaye
-  mobileNav.querySelectorAll('a, button').forEach((item) => {
-    item.addEventListener('click', () => {
-      mobileNav.classList.add('hidden');
-    });
-  });
-</script>
 
 
 <!-- Hero Section -->
@@ -541,278 +524,8 @@
 </section>
 
 
-<!-- About Us Section -->
-<section id="about" class="cosmic-bg py-20 relative">
-  <div class="absolute inset-0" style="background-image: url('https://readdy.ai/api/search-image?query=cosmic%2520nebula%2520with%2520deep%2520purple%2520and%2520blue%2520colors%252C%2520subtle%2520star%2520field%252C%2520mystical%2520and%2520spiritual%2520atmosphere%252C%2520professional%2520digital%2520art%252C%2520high%2520quality%252C%2520perfect%2520for%2520astrology%2520website%2520background%252C%2520ethereal%2520cosmic%2520energy&width=1920&height=1080&seq=cosmic-bg-2&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.4;"></div>
-  <div class="absolute inset-0 bg-primary/70"></div>
 
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-8">
-       Ved Mantra Gyan is one stop solution for your every spiritual quest   
-      </h2>
-
-      <div class="text-left text-lg text-[#E6E6FA] opacity-90 space-y-6" style="text-align: justify;">
-  <p>
-    Ved Mantra gyan is a sister concern venture of Chote Sai Charitable Trust
-  </p>
-
-  <p>
-    VedMantra Gyan is initiated with a belief in offering holistic growth of mankind—encompassing all dimensions of
-    life: physical, mental, emotional, and spiritual. Guided by this vision, we are
-    dedicated to share the profound wisdom of the Vedas and other ancient spiritual traditions.
-  </p>
-
-  <p>
-    Through sacred teachings, rituals and personalized guidance, we strive to help
-    individuals to reconnect with their inner self, align with cosmic
-    energies, and lead a life rooted with a purpose, clarity and balance.
-  </p>
-</div>
-
-
-        <!-- Toggle Button -->
-        <div class="text-center pt-6">
-          <button
-            onclick="toggleAboutContent()"
-            id="toggleBtn"
-            class="bg-[#FFD700] text-[#4b0082] px-6 py-2 rounded-full text-base font-semibold hover:bg-[#e6c200] transition"
-          >
-            View More
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Script to toggle content -->
-<script>
-  function toggleAboutContent() {
-    const moreContent = document.getElementById("moreContent");
-    const toggleBtn = document.getElementById("toggleBtn");
-
-    if (moreContent.classList.contains("hidden")) {
-      moreContent.classList.remove("hidden");
-      toggleBtn.innerText = "View Less";
-    } else {
-      moreContent.classList.add("hidden");
-      toggleBtn.innerText = "View More";
-    }
-  }
-</script>
-
-
-
-    <!-- Daily Horoscope Section -->
-    <section id="horoscope" class="cosmic-bg py-20 relative">
-      <div class="absolute inset-0 bg-primary/50"></div>
-
-      <!-- Stars Background -->
-      <div id="stars" class="absolute inset-0"></div>
-
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-4">
-            Daily Horoscope
-          </h2>
-          <p class="text-lg text-[#E6E6FA] opacity-90 max-w-2xl mx-auto">
-            Explore your cosmic forecast and discover what the stars have
-            aligned for you today.
-          </p>
-        </div>
-
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-        >
-          <!-- Aries -->
-          <div class="zodiac-card rounded-lg p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
-            >
-              <i class="ri-aries-line ri-3x"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Aries</h3>
-            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
-              March 21 - April 19
-            </p>
-            <p class="text-[#E6E6FA] mb-4">
-              Today brings unexpected opportunities for growth. Be open to new
-              connections that could lead to exciting ventures.
-            </p>
-            <button
-              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
-            >
-              Read More
-            </button>
-          </div>
-
-          <!-- Taurus -->
-          <div class="zodiac-card rounded-lg p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
-            >
-              <i class="ri-taurus-line ri-3x"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Taurus</h3>
-            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
-              April 20 - May 20
-            </p>
-            <p class="text-[#E6E6FA] mb-4">
-              Financial matters take center stage today. Trust your instincts
-              when making important decisions about investments.
-            </p>
-            <button
-              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
-            >
-              Read More
-            </button>
-          </div>
-
-          <!-- Gemini -->
-          <div class="zodiac-card rounded-lg p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
-            >
-              <i class="ri-gemini-line ri-3x"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Gemini</h3>
-            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
-              May 21 - June 20
-            </p>
-            <p class="text-[#E6E6FA] mb-4">
-              Your communication skills are heightened today. Use this energy to
-              resolve any misunderstandings in your relationships.
-            </p>
-            <button
-              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
-            >
-              Read More
-            </button>
-          </div>
-
-          <!-- Cancer -->
-          <div class="zodiac-card rounded-lg p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
-            >
-              <i class="ri-cancer-line ri-3x"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Cancer</h3>
-            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
-              June 21 - July 22
-            </p>
-            <p class="text-[#E6E6FA] mb-4">
-              Emotional balance is key today. Take time for self-care and
-              nurture your inner world to maintain harmony.
-            </p>
-            <button
-              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
-            >
-              Read More
-            </button>
-          </div>
-
-          <!-- Leo -->
-          <div class="zodiac-card rounded-lg p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
-            >
-              <i class="ri-leo-line ri-3x"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Leo</h3>
-            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
-              July 23 - August 22
-            </p>
-            <p class="text-[#E6E6FA] mb-4">
-              Your creative energy is at its peak. Express yourself boldly and
-              don't be afraid to stand in the spotlight.
-            </p>
-            <button
-              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
-            >
-              Read More
-            </button>
-          </div>
-
-          <!-- Virgo -->
-          <div class="zodiac-card rounded-lg p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
-            >
-              <i class="ri-virgo-line ri-3x"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Virgo</h3>
-            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
-              August 23 - September 22
-            </p>
-            <p class="text-[#E6E6FA] mb-4">
-              Focus on organization and planning today. Your attention to detail
-              will help you solve complex problems.
-            </p>
-            <button
-              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
-            >
-              Read More
-            </button>
-          </div>
-
-          <!-- Libra -->
-          <div class="zodiac-card rounded-lg p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
-            >
-              <i class="ri-libra-line ri-3x"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Libra</h3>
-            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
-              September 23 - October 22
-            </p>
-            <p class="text-[#E6E6FA] mb-4">
-              Harmony in relationships is highlighted. Find balance between
-              giving and receiving in your partnerships.
-            </p>
-            <button
-              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
-            >
-              Read More
-            </button>
-          </div>
-
-          <!-- Scorpio -->
-          <div class="zodiac-card rounded-lg p-6 text-center">
-            <div
-              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
-            >
-              <i class="ri-scorpio-line ri-3x"></i>
-            </div>
-            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Scorpio</h3>
-            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
-              October 23 - November 21
-            </p>
-            <p class="text-[#E6E6FA] mb-4">
-              Transformation is on the horizon. Embrace change and let go of
-              what no longer serves your highest good.
-            </p>
-            <button
-              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
-            >
-              Read More
-            </button>
-          </div>
-        </div>
-
-        <div class="text-center mt-10">
-          <button
-            class="px-6 py-3 bg-[#FFD700] text-primary font-bold rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
-          >
-            View All Horoscopes
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Astrology Services Section -->
+<!-- Astrology Services Section -->
     <section id="services" class="cosmic-bg py-20 relative">
       <div
         class="absolute inset-0"
@@ -1151,125 +864,15 @@
       </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="cosmic-bg py-20 relative">
-      <div
-        class="absolute inset-0"
-        style="background-image: url('https://readdy.ai/api/search-image?query=cosmic%2520nebula%2520with%2520deep%2520purple%252C%2520blue%2520and%2520subtle%2520gold%2520accents%252C%2520mystical%2520star%2520field%252C%2520ethereal%2520cosmic%2520clouds%252C%2520professional%2520digital%2520art%252C%2520high%2520quality%252C%2520perfect%2520for%2520astrology%2520website%2520background%252C%2520subtle%2520and%2520elegant&width=1920&height=1080&seq=cosmic-bg-3&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.3;"
-      ></div>
 
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-4">
-            What Our Clients Say
-          </h2>
-          <p class="text-lg text-[#E6E6FA] opacity-90 max-w-2xl mx-auto">
-            Discover how our astrological insights have transformed lives and
-            guided important decisions.
-          </p>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Testimonial 1 -->
-          <div class="testimonial-card rounded-lg p-8">
-            <div class="flex items-center mb-6">
-              <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                <img
-                  src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520middle-aged%2520woman%2520with%2520warm%2520smile%252C%2520business%2520casual%2520attire%252C%2520neutral%2520background%252C%2520natural%2520lighting%252C%2520professional%2520portrait%2520photography&width=200&height=200&seq=testimonial-1&orientation=squarish"
-                  alt="Client"
-                  class="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div>
-                <h4 class="text-lg font-bold text-[#FFD700]">
-                  Rebecca Anderson
-                </h4>
-                <p class="text-sm text-[#E6E6FA] opacity-80">
-                  Marketing Director
-                </p>
-              </div>
-            </div>
-            <div class="flex text-[#FFD700] mb-4">
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-            </div>
-            <p class="text-[#E6E6FA] italic">
-              "The birth chart analysis was incredibly accurate and insightful.
-              It helped me understand my career path and make important
-              decisions during a challenging transition. Dr. Sharma's guidance
-              was transformative."
-            </p>
-          </div>
 
-          <!-- Testimonial 2 -->
-          <div class="testimonial-card rounded-lg p-8">
-            <div class="flex items-center mb-6">
-              <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                <img
-                  src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520young%2520man%2520with%2520short%2520dark%2520hair%2520and%2520friendly%2520smile%252C%2520business%2520casual%2520attire%252C%2520neutral%2520background%252C%2520natural%2520lighting%252C%2520professional%2520portrait%2520photography&width=200&height=200&seq=testimonial-2&orientation=squarish"
-                  alt="Client"
-                  class="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div>
-                <h4 class="text-lg font-bold text-[#FFD700]">Michael Chen</h4>
-                <p class="text-sm text-[#E6E6FA] opacity-80">
-                  Software Engineer
-                </p>
-              </div>
-            </div>
-            <div class="flex text-[#FFD700] mb-4">
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-half-fill"></i>
-            </div>
-            <p class="text-[#E6E6FA] italic">
-              "The relationship compatibility reading helped my partner and I
-              understand our dynamics better. We've improved our communication
-              significantly and learned to appreciate our differences. Truly
-              eye-opening!"
-            </p>
-          </div>
 
-          <!-- Testimonial 3 -->
-          <div class="testimonial-card rounded-lg p-8">
-            <div class="flex items-center mb-6">
-              <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                <img
-                  src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520woman%2520in%2520her%252030s%2520with%2520curly%2520hair%2520and%2520confident%2520expression%252C%2520business%2520casual%2520attire%252C%2520neutral%2520background%252C%2520natural%2520lighting%252C%2520professional%2520portrait%2520photography&width=200&height=200&seq=testimonial-3&orientation=squarish"
-                  alt="Client"
-                  class="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div>
-                <h4 class="text-lg font-bold text-[#FFD700]">Priya Patel</h4>
-                <p class="text-sm text-[#E6E6FA] opacity-80">Entrepreneur</p>
-              </div>
-            </div>
-            <div class="flex text-[#FFD700] mb-4">
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-            </div>
-            <p class="text-[#E6E6FA] italic">
-              "The financial forecast was incredibly accurate. Following the
-              recommended timing for my business launch led to unexpected
-              success. I continue to consult before making major business
-              decisions."
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Newsletter Section -->
+
+
+
+ <!-- Newsletter Section -->
     <section class="cosmic-bg py-20 relative">
       <div class="absolute inset-0 bg-primary/80"></div>
 
@@ -1344,7 +947,7 @@
       </div>
     </section>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="cosmic-bg pt-16 pb-8 relative">
       <div
         class="absolute inset-0 bg-gradient-to-t from-[#1A1B4B] to-primary opacity-90"

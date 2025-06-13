@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+ 
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Insights | Your Personal Astrology Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Lato:wght@300;400;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#2A1B3D", secondary: "#1A1B4B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+
+      body {
+          font-family: 'Inter', sans-serif;
+          overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4, h5 {
+          font-family: 'Cinzel', serif;
+      }
+
+      .nav-link {
+          position: relative;
+      }
+
+      .nav-link::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -4px;
+          left: 0;
+          background-color: #FFD700;
+          transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+          width: 100%;
+      }
+
+      .cosmic-bg {
+          background: linear-gradient(135deg, #1A1B4B 0%, #2A1B3D 50%, #1A1B4B 100%);
+          position: relative;
+          overflow: hidden;
+      }
+
+      .star {
+          position: absolute;
+          background-color: white;
+          border-radius: 50%;
+          opacity: 0;
+          animation: twinkle 5s infinite;
+      }
+
+      @keyframes twinkle {
+          0% { opacity: 0; }
+          50% { opacity: 1; }
+          100% { opacity: 0; }
+      }
+
+      .zodiac-card {
+          transition: transform 0.5s ease, box-shadow 0.5s ease;
+          background: rgba(42, 27, 61, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(230, 230, 250, 0.2);
+      }
+
+      .zodiac-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .service-card {
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          background: rgba(26, 27, 75, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(230, 230, 250, 0.2);
+      }
+
+      .service-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .astrologer-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          background: rgba(42, 27, 61, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(230, 230, 250, 0.2);
+      }
+
+      .astrologer-card:hover {
+          transform: scale(1.03);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .testimonial-card {
+          background: rgba(26, 27, 75, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(230, 230, 250, 0.2);
+      }
+
+      .glow-button {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+      }
+
+      .glow-button::after {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0) 70%);
+          opacity: 0;
+          transition: opacity 0.5s ease;
+      }
+
+      .glow-button:hover::after {
+          opacity: 1;
+      }
+
+      /* loadingsecreen */
+
+     .loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000; /* optional background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-image {
+  width: 150px; /* adjust as needed */
+  height: auto;
+}
+      .zodiac-wheel {
+          width: 150px;
+          height: 150px;
+          animation: rotate 6s linear infinite;
+      }
+
+      @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+
+      .floating {
+          animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+      }
+
+      .custom-checkbox {
+          appearance: none;
+          -webkit-appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #E6E6FA;
+          border-radius: 4px;
+          outline: none;
+          transition: all 0.2s ease;
+          position: relative;
+          cursor: pointer;
+          background-color: transparent;
+      }
+
+      .custom-checkbox:checked {
+          background-color: #FFD700;
+          border-color: #FFD700;
+      }
+
+      .custom-checkbox:checked::after {
+          content: '';
+          position: absolute;
+          top: 3px;
+          left: 6px;
+          width: 6px;
+          height: 10px;
+          border: solid #1A1B4B;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+      }
+
+      .custom-switch {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 24px;
+      }
+
+      .custom-switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+
+      .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(230, 230, 250, 0.3);
+          transition: .4s;
+          border-radius: 34px;
+      }
+
+      .slider:before {
+          position: absolute;
+          content: "";
+          height: 18px;
+          width: 18px;
+          left: 3px;
+          bottom: 3px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+
+      input:checked + .slider {
+          background-color: #FFD700;
+      }
+
+      input:checked + .slider:before {
+          transform: translateX(26px);
+      }
+
+      .range-slider {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 6px;
+          border-radius: 5px;
+          background: linear-gradient(to right, #2A1B3D, #FFD700);
+          outline: none;
+      }
+
+      .range-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #FFD700;
+          cursor: pointer;
+          box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      }
+
+      .range-slider::-moz-range-thumb {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #FFD700;
+          cursor: pointer;
+          box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+          border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+  <div class="zodiac-wheel">
+    <!-- Replace SVG with your custom image -->
+    <img src="piclumen-1749724188230-removebg-preview.png" alt="Loading Image" class="loading-image" />
+  </div>
+</div>
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="#E6E6FA"
+            stroke-width="2"
+          />
+          <circle cx="50" cy="5" r="4" fill="#FFD700" />
+          <circle cx="80" cy="20" r="4" fill="#FFD700" />
+          <circle cx="95" cy="50" r="4" fill="#FFD700" />
+          <circle cx="80" cy="80" r="4" fill="#FFD700" />
+          <circle cx="50" cy="95" r="4" fill="#FFD700" />
+          <circle cx="20" cy="80" r="4" fill="#FFD700" />
+          <circle cx="5" cy="50" r="4" fill="#FFD700" />
+          <circle cx="20" cy="20" r="4" fill="#FFD700" />
+          <circle
+            cx="50"
+            cy="50"
+            r="10"
+            fill="none"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+          <line
+            x1="50"
+            y1="40"
+            x2="50"
+            y2="20"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+          <line
+            x1="50"
+            y1="60"
+            x2="50"
+            y2="80"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+          <line
+            x1="40"
+            y1="50"
+            x2="20"
+            y2="50"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+          <line
+            x1="60"
+            y1="50"
+            x2="80"
+            y2="50"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+        </svg>
+      </div>
+    </div>
+
+<!-- Header & Navigation -->
+<header class="fixed w-full z-50 bg-opacity-20 bg-primary backdrop-blur-md border-b border-[#E6E6FA30]">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="#" class="inline-block">
+          <img src="piclumen-1749724188230-removebg-preview.png" alt="VedMantraGyan Logo" class="h-16 w-auto" />
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-8 items-center relative">
+        <a href="#horoscope" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Horoscope</a>
+
+        <!-- About Dropdown -->
+        <div class="relative group">
+          <button class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">
+            About
+          </button>
+          <div class="absolute hidden group-hover:block bg-[#1e1e2f] border border-[#FFD70040] rounded-md mt-2 w-52 shadow-lg z-50">
+            <a href="about-vipin.html" class="block px-4 py-2 text-[#E6E6FA] hover:bg-[#FFD70020] hover:text-[#FFD700] transition">Swami Vipin Vyas</a>
+            <a href="about-divya.html" class="block px-4 py-2 text-[#E6E6FA] hover:bg-[#FFD70020] hover:text-[#FFD700] transition">Divya Tripathi</a>
+          </div>
+        </div>
+
+        <a href="#services" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition">Services</a>
+        <a href="#astrologers" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition">Live Connect</a>
+        <a href="#testimonials" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition">Testimonials</a>
+        <a href="#contact" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition">Contact</a>
+      </nav>
+
+      <!-- Right Buttons & Hamburger -->
+      <div class="flex items-center space-x-4">
+        <div class="w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition">
+          <i class="ri-search-line ri-lg"></i>
+        </div>
+        <button class="hidden md:block px-4 py-2 text-[#E6E6FA] border border-[#E6E6FA50] rounded-button hover:border-[#FFD700] hover:text-[#FFD700] transition">
+          Sign In
+        </button>
+        <button class="hidden md:block px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition">
+          Sign Up
+        </button>
+
+        <!-- Hamburger Icon -->
+        <div id="mobileMenuBtn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition">
+          <i class="ri-menu-line ri-lg"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div id="mobileNav" class="md:hidden hidden flex flex-col bg-primary/90 backdrop-blur-md border-t border-[#E6E6FA30] px-6 py-4 space-y-4">
+    <a href="#horoscope" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Horoscope</a>
+
+    <!-- About Dropdown in Mobile -->
+    <details class="text-[#E6E6FA]">
+      <summary class="cursor-pointer hover:text-[#FFD700] transition">About</summary>
+      <div class="pl-4 mt-2 space-y-1">
+        <a href="about-vipin.html" class="block hover:text-[#FFD700]">Swami Vipin Vyas</a>
+        <a href="about-divya.html" class="block hover:text-[#FFD700]">Divya Tripathi</a>
+      </div>
+    </details>
+
+    <a href="#services" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Services</a>
+    <a href="#astrologers" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Live Connect</a>
+    <a href="#testimonials" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Testimonials</a>
+    <a href="#contact" class="text-[#E6E6FA] hover:text-[#FFD700] transition">Contact</a>
+    <button class="px-4 py-2 text-[#E6E6FA] border border-[#E6E6FA50] rounded-button hover:border-[#FFD700] hover:text-[#FFD700] transition">
+      Sign In
+    </button>
+    <button class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition">
+      Sign Up
+    </button>
+  </div>
+</header>
+
+<!-- Toggle mobile script -->
+<script>
+  const menuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  menuBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('hidden');
+  });
+
+  mobileNav.querySelectorAll('a, button').forEach((item) => {
+    item.addEventListener('click', () => {
+      mobileNav.classList.add('hidden');
+    });
+  });
+</script>
+
+
+
+<!-- Hero Section -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-[80px]">
+
+  <!-- Background Video -->
+  <div class="absolute inset-0 z-[-1] overflow-hidden">
+    <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80">
+      <source src="freecompress-VN20250612_153033.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-r from-[#4b0082] via-[#4b008270] to-transparent z-0"></div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-6 py-12 relative z-10 w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="text-center md:text-left" data-aos="fade-right">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#E6E6FA] leading-tight mb-6">
+          Unlock the Secrets of Your Stars
+        </h1>
+        <p class="text-lg md:text-xl text-[#E6E6FA] opacity-90 mb-8 max-w-xl">
+          Discover your cosmic path with personalized astrological insights.<br />
+          Let the stars guide your journey through life's mysteries.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <button class="glow-button px-6 py-3 bg-[#FFD700] text-[#4b0082] font-bold text-lg shadow-lg hover:shadow-[#FFD70050] transition-all duration-300 rounded-full">
+            Talk to an Astrologer
+          </button>
+          <button class="glow-button px-6 py-3 bg-transparent border-2 border-[#E6E6FA] text-[#E6E6FA] font-bold text-lg hover:border-[#FFD700] hover:text-[#FFD700] transition-all duration-300 rounded-full">
+            Check Horoscope
+          </button>
+        </div>
+      </div>
+      <div class="hidden md:block"></div>
+    </div>
+  </div>
+
+  <!-- Floating Zodiac Symbols -->
+  <div class="absolute top-1/4 right-1/4 w-12 h-12 text-[#FFD700] opacity-70 animate-bounce" style="animation-delay: 0s;">
+    <i class="ri-aries-line ri-2x"></i>
+  </div>
+  <div class="absolute top-2/3 right-1/3 w-10 h-10 text-[#FFD700] opacity-60 animate-bounce" style="animation-delay: 1s;">
+    <i class="ri-taurus-line ri-2x"></i>
+  </div>
+  <div class="absolute top-1/3 right-2/3 w-8 h-8 text-[#E6E6FA] opacity-50 animate-bounce" style="animation-delay: 2s;">
+    <i class="ri-gemini-line ri-2x"></i>
+  </div>
+  <div class="absolute top-3/4 right-1/2 w-10 h-10 text-[#E6E6FA] opacity-60 animate-bounce" style="animation-delay: 1.5s;">
+    <i class="ri-cancer-line ri-2x"></i>
+  </div>
+</section>
+
+
+
+<!-- About Us Section -->
+<section id="about" class="cosmic-bg py-20 relative">
+  <div class="absolute inset-0" style="background-image: url('https://readdy.ai/api/search-image?query=cosmic%2520nebula%2520with%2520deep%2520purple%2520and%2520blue%2520colors%252C%2520subtle%2520star%2520field%252C%2520mystical%2520and%2520spiritual%2520atmosphere%252C%2520professional%2520digital%2520art%252C%2520high%2520quality%252C%2520perfect%2520for%2520astrology%2520website%2520background%252C%2520ethereal%2520cosmic%2520energy&width=1920&height=1080&seq=cosmic-bg-2&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.4;"></div>
+  <div class="absolute inset-0 bg-primary/70"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-8">
+       Divya Tripathi
+      </h2>
+
+      <div class="text-left text-lg text-[#E6E6FA] opacity-90 space-y-6">
+        <!-- Always visible content -->
+        <p>
+          Swami Vipin Vayas is one of the most renowned and respected Adhyatmik (Spiritual) Darshanik (Philosophical) Gurus, Proficient Yogi, and Astrologer whose spiritual journey began over 40 years ago amidst the serene valleys of Amarnath, immersed in Sadhana and meditation. His path later led him to Kamakhya, the sacred abode of the ten Mahavidyas - the feminine divine.
+        </p>
+
+        <p>
+          From early childhood, Swami Vipin Vayas was surrounded by saints, sages, and seers. His formative years were deeply influenced by the sacred atmosphere of temples and monasteries, where devotional Kirtans, Bhajans, and holy rituals were part of his daily life.
+        </p>
+
+        <p>
+          His spiritual journey began in his youth under the divine guidance of his father. It was from his father that Swami ji first absorbed the sacred knowledge of astrology, observing with curiosity and reverence as his father calculated planetary dashas and timelines through intricate Kundali (birth charts).
+        </p>
+
+        <!-- Hidden content by default -->
+        <div id="moreContent" class="hidden space-y-6">
+          <p>
+            While most children attended conventional schools, young Vipin embarked on divine pilgrimages. His teenage years were marked by deep meditative journeys through the sacred lands of Amarnath and the mystic Nimalchal Parvat, in search of the Supreme Truth that lies beyond the material world.
+          </p>
+
+          <p>
+            Swami ji was introduced to the practices of Sadhana, Siddhi, and Upasana, igniting a spiritual flame that would guide his life in understanding the Supreme Power of the cosmos.
+          </p>
+
+          <p>
+            Moving forward in the path of spirituality, he decided to permanently dedicate his spiritual knowledge for the well-being of others. Since then, he has devoted himself to guiding seekers on the path of self-realization, inner peace, and divine wisdom.
+          </p>
+
+          <p>
+            For over three decades, Swami Vipin Vayas has practiced occult and spiritual sciences, mastering the following disciplines:
+          </p>
+
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Spiritual Astrology</li>
+            <li>Birth Journals (Kundli Analysis)</li>
+            <li>Numerology</li>
+            <li>Vedic and Tantric Geomancy (Vastu & Earth Energies)</li>
+            <li>Tarot Card Reading</li>
+            <li>Navagrah Shanti</li>
+            <li>Vivah Dosh Puja</li>
+            <li>Kaal Sarp Dosh Puja</li>
+            <li>Palmistry</li>
+            <li>Planetary Dosh Nivaran</li>
+            <li>Najar Dosh</li>
+            <li>Pitra Dosh</li>
+            <li>Prediction of Future with Face Reading</li>
+          </ul>
+        </div>
+
+        <!-- Toggle Button -->
+        <div class="text-center pt-6">
+          <button
+            onclick="toggleAboutContent()"
+            id="toggleBtn"
+            class="bg-[#FFD700] text-[#4b0082] px-6 py-2 rounded-full text-base font-semibold hover:bg-[#e6c200] transition"
+          >
+            View More
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+ <!-- Newsletter Section -->
+    <section class="cosmic-bg py-20 relative">
+      <div class="absolute inset-0 bg-primary/80"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div
+          class="max-w-3xl mx-auto bg-[#1A1B4B]/70 backdrop-blur-md rounded-lg p-8 md:p-12 border border-[#E6E6FA30]"
+        >
+          <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#FFD700] mb-4">
+              Subscribe to Cosmic Insights
+            </h2>
+            <p class="text-[#E6E6FA] opacity-90">
+              Receive weekly horoscopes, astrological forecasts, and exclusive
+              offers directly to your inbox.
+            </p>
+          </div>
+
+          <form class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-[#E6E6FA] mb-2">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  class="w-full px-4 py-3 bg-[#2A1B3D]/50 border border-[#E6E6FA30] rounded focus:outline-none focus:border-[#FFD700] text-[#E6E6FA]"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-[#E6E6FA] mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-3 bg-[#2A1B3D]/50 border border-[#E6E6FA30] rounded focus:outline-none focus:border-[#FFD700] text-[#E6E6FA]"
+                  placeholder="Your email"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="birthdate" class="block text-[#E6E6FA] mb-2"
+                >Birth Date (optional)</label
+              >
+              <input
+                type="date"
+                id="birthdate"
+                class="w-full px-4 py-3 bg-[#2A1B3D]/50 border border-[#E6E6FA30] rounded focus:outline-none focus:border-[#FFD700] text-[#E6E6FA]"
+              />
+            </div>
+
+            <div>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox" />
+                <span class="text-[#E6E6FA] ml-3"
+                  >I agree to receive newsletters and promotional emails</span
+                >
+              </label>
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="px-6 py-3 bg-[#FFD700] text-primary font-bold rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+              >
+                Subscribe Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+<!-- Footer -->
+    <footer class="cosmic-bg pt-16 pb-8 relative">
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-[#1A1B4B] to-primary opacity-90"
+      ></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div>
+            <a
+              href="#"
+              class="text-3xl font-['Pacifico'] text-[#FFD700] mb-6 block"
+              >logo</a
+            >
+            <p class="text-[#E6E6FA] opacity-80 mb-6">
+              Guiding your cosmic journey with authentic astrological insights
+              since 2010.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-[#E6E6FA20] flex items-center justify-center text-[#E6E6FA] hover:bg-[#FFD700] hover:text-primary transition-colors duration-300"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-[#E6E6FA20] flex items-center justify-center text-[#E6E6FA] hover:bg-[#FFD700] hover:text-primary transition-colors duration-300"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-[#E6E6FA20] flex items-center justify-center text-[#E6E6FA] hover:bg-[#FFD700] hover:text-primary transition-colors duration-300"
+              >
+                <i class="ri-twitter-x-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-[#E6E6FA20] flex items-center justify-center text-[#E6E6FA] hover:bg-[#FFD700] hover:text-primary transition-colors duration-300"
+              >
+                <i class="ri-youtube-fill"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-bold text-[#FFD700] mb-6">Quick Links</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Daily Horoscope</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Compatibility Calculator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Astrology Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Vedic Remedies</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Astrologer Consultation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Astrology Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-bold text-[#FFD700] mb-6">Services</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Birth Chart Analysis</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Relationship Compatibility</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Career & Financial Forecast</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Spiritual Guidance</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Yearly Forecast</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Vedic Remedies</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-bold text-[#FFD700] mb-6">Contact Us</h4>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-[#FFD700] mt-1 mr-3"
+                >
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="text-[#E6E6FA]"
+                  >1234 Cosmic Way, Celestial Heights, CA 90210</span
+                >
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-[#FFD700] mr-3"
+                >
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="text-[#E6E6FA]">+1 (555) 123-4567</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-[#FFD700] mr-3"
+                >
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="text-[#E6E6FA]">contact@cosmicinsights.com</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-[#FFD700] mr-3"
+                >
+                  <i class="ri-time-line"></i>
+                </div>
+                <span class="text-[#E6E6FA]"
+                  >Open 24/7 for Online Consultations</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-[#E6E6FA30] pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-[#E6E6FA] opacity-70 mb-4 md:mb-0">
+              © 2025 Cosmic Insights. All rights reserved.
+            </p>
+            <div class="flex space-x-6">
+              <a
+                href="#"
+                class="text-[#E6E6FA] opacity-70 hover:text-[#FFD700] hover:opacity-100 transition-colors duration-300"
+                >Privacy Policy</a
+              >
+              <a
+                href="#"
+                class="text-[#E6E6FA] opacity-70 hover:text-[#FFD700] hover:opacity-100 transition-colors duration-300"
+                >Terms of Service</a
+              >
+              <a
+                href="#"
+                class="text-[#E6E6FA] opacity-70 hover:text-[#FFD700] hover:opacity-100 transition-colors duration-300"
+                >FAQ</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Zodiac Symbols -->
+      <div
+        class="absolute bottom-20 left-10 w-8 h-8 text-[#FFD700] opacity-30 floating"
+        style="animation-delay: 0.5s;"
+      >
+        <i class="ri-virgo-line ri-xl"></i>
+      </div>
+      <div
+        class="absolute bottom-40 left-20 w-6 h-6 text-[#FFD700] opacity-20 floating"
+        style="animation-delay: 1.5s;"
+      >
+        <i class="ri-libra-line ri-xl"></i>
+      </div>
+      <div
+        class="absolute bottom-30 right-10 w-10 h-10 text-[#FFD700] opacity-30 floating"
+        style="animation-delay: 2s;"
+      >
+        <i class="ri-scorpio-line ri-xl"></i>
+      </div>
+      <div
+        class="absolute bottom-60 right-20 w-8 h-8 text-[#FFD700] opacity-20 floating"
+        style="animation-delay: 0s;"
+      >
+        <i class="ri-sagittarius-line ri-xl"></i>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+<div
+  class="fixed bottom-6 right-6 z-50 bg-[#FFD700] p-4 rounded-full shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+  onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="black"
+    stroke-width="2"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+  </svg>
+</div>
+
+
+<script>
+  document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
+    <!-- Scripts -->
+    <script id="loadingAnimation">
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          const loadingScreen = document.getElementById("loadingScreen");
+          loadingScreen.style.opacity = "0";
+          setTimeout(function () {
+            loadingScreen.style.display = "none";
+          }, 500);
+        }, 2000);
+      });
+    </script>
+
+    <script id="starsAnimation">
+      document.addEventListener("DOMContentLoaded", function () {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 100;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          // Random size between 1px and 3px
+          const size = Math.random() * 2 + 1;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+
+          // Random position
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+
+          // Random animation delay
+          star.style.animationDelay = `${Math.random() * 5}s`;
+
+          starsContainer.appendChild(star);
+        }
+      });
+    </script>
+
+    <script id="soundControl">
+      document.addEventListener("DOMContentLoaded", function () {
+        const soundToggle = document.getElementById("soundToggle");
+        let audioElement = null;
+
+        soundToggle.addEventListener("change", function () {
+          if (this.checked) {
+            if (!audioElement) {
+              audioElement = new Audio();
+              audioElement.src =
+                "https://assets.mixkit.co/sfx/preview/mixkit-ambient-relaxing-sound-169.mp3";
+              audioElement.loop = true;
+              audioElement.volume = 0.2;
+            }
+            audioElement.play();
+          } else {
+            if (audioElement) {
+              audioElement.pause();
+            }
+          }
+        });
+      });
+    </script>
+
+    <script id="scrollAnimation">
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+              window.scrollTo({
+                top: targetSection.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+ 
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Insights | Your Personal Astrology Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Lato:wght@300;400;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#2A1B3D", secondary: "#1A1B4B" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+
+      body {
+          font-family: 'Inter', sans-serif;
+          overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4, h5 {
+          font-family: 'Cinzel', serif;
+      }
+
+      .nav-link {
+          position: relative;
+      }
+
+      .nav-link::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -4px;
+          left: 0;
+          background-color: #FFD700;
+          transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+          width: 100%;
+      }
+
+      .cosmic-bg {
+          background: linear-gradient(135deg, #1A1B4B 0%, #2A1B3D 50%, #1A1B4B 100%);
+          position: relative;
+          overflow: hidden;
+      }
+
+      .star {
+          position: absolute;
+          background-color: white;
+          border-radius: 50%;
+          opacity: 0;
+          animation: twinkle 5s infinite;
+      }
+
+      @keyframes twinkle {
+          0% { opacity: 0; }
+          50% { opacity: 1; }
+          100% { opacity: 0; }
+      }
+
+      .zodiac-card {
+          transition: transform 0.5s ease, box-shadow 0.5s ease;
+          background: rgba(42, 27, 61, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(230, 230, 250, 0.2);
+      }
+
+      .zodiac-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .service-card {
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          background: rgba(26, 27, 75, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(230, 230, 250, 0.2);
+      }
+
+      .service-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .astrologer-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          background: rgba(42, 27, 61, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(230, 230, 250, 0.2);
+      }
+
+      .astrologer-card:hover {
+          transform: scale(1.03);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .testimonial-card {
+          background: rgba(26, 27, 75, 0.7);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(230, 230, 250, 0.2);
+      }
+
+      .glow-button {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+      }
+
+      .glow-button::after {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0) 70%);
+          opacity: 0;
+          transition: opacity 0.5s ease;
+      }
+
+      .glow-button:hover::after {
+          opacity: 1;
+      }
+
+      .loading-screen {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #1A1B4B;
+          z-index: 9999;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+
+      .zodiac-wheel {
+          width: 150px;
+          height: 150px;
+          animation: rotate 6s linear infinite;
+      }
+
+      @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+
+      .floating {
+          animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+      }
+
+      .custom-checkbox {
+          appearance: none;
+          -webkit-appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #E6E6FA;
+          border-radius: 4px;
+          outline: none;
+          transition: all 0.2s ease;
+          position: relative;
+          cursor: pointer;
+          background-color: transparent;
+      }
+
+      .custom-checkbox:checked {
+          background-color: #FFD700;
+          border-color: #FFD700;
+      }
+
+      .custom-checkbox:checked::after {
+          content: '';
+          position: absolute;
+          top: 3px;
+          left: 6px;
+          width: 6px;
+          height: 10px;
+          border: solid #1A1B4B;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+      }
+
+      .custom-switch {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 24px;
+      }
+
+      .custom-switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+
+      .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(230, 230, 250, 0.3);
+          transition: .4s;
+          border-radius: 34px;
+      }
+
+      .slider:before {
+          position: absolute;
+          content: "";
+          height: 18px;
+          width: 18px;
+          left: 3px;
+          bottom: 3px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+
+      input:checked + .slider {
+          background-color: #FFD700;
+      }
+
+      input:checked + .slider:before {
+          transform: translateX(26px);
+      }
+
+      .range-slider {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 6px;
+          border-radius: 5px;
+          background: linear-gradient(to right, #2A1B3D, #FFD700);
+          outline: none;
+      }
+
+      .range-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #FFD700;
+          cursor: pointer;
+          box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      }
+
+      .range-slider::-moz-range-thumb {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #FFD700;
+          cursor: pointer;
+          box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+          border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="zodiac-wheel">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="#E6E6FA"
+            stroke-width="2"
+          />
+          <circle cx="50" cy="5" r="4" fill="#FFD700" />
+          <circle cx="80" cy="20" r="4" fill="#FFD700" />
+          <circle cx="95" cy="50" r="4" fill="#FFD700" />
+          <circle cx="80" cy="80" r="4" fill="#FFD700" />
+          <circle cx="50" cy="95" r="4" fill="#FFD700" />
+          <circle cx="20" cy="80" r="4" fill="#FFD700" />
+          <circle cx="5" cy="50" r="4" fill="#FFD700" />
+          <circle cx="20" cy="20" r="4" fill="#FFD700" />
+          <circle
+            cx="50"
+            cy="50"
+            r="10"
+            fill="none"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+          <line
+            x1="50"
+            y1="40"
+            x2="50"
+            y2="20"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+          <line
+            x1="50"
+            y1="60"
+            x2="50"
+            y2="80"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+          <line
+            x1="40"
+            y1="50"
+            x2="20"
+            y2="50"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+          <line
+            x1="60"
+            y1="50"
+            x2="80"
+            y2="50"
+            stroke="#FFD700"
+            stroke-width="1"
+          />
+        </svg>
+      </div>
+    </div>
+
+  <!-- Header & Navigation -->
+<header class="fixed w-full z-50 bg-opacity-20 bg-primary backdrop-blur-md border-b border-[#E6E6FA30]">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center">
+       <a href="#" class="inline-block">
+  <img src="piclumen-1749724188230-removebg-preview.png" alt="VedMantraGyan Logo" class="h-16 w-auto" />
+</a>
+
+      </div>
+
+      <nav class="hidden md:flex space-x-8">
+        <a href="#horoscope" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Horoscope</a>
+        <a href="#services" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Services</a>
+        <a href="#astrologers" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Live Connect</a>
+        <a href="#testimonials" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Testimonials</a>
+        <a href="#contact" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Contact</a>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        <div class="w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition-colors duration-300">
+          <i class="ri-search-line ri-lg"></i>
+        </div>
+        <button class="hidden md:block px-4 py-2 text-[#E6E6FA] border border-[#E6E6FA50] rounded-button hover:border-[#FFD700] hover:text-[#FFD700] transition-colors duration-300 whitespace-nowrap">
+          Sign In
+        </button>
+        <button class="hidden md:block px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button">
+          Sign Up
+        </button>
+        <div class="md:hidden w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition-colors duration-300">
+          <i class="ri-menu-line ri-lg"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-[80px]">
+
+  <!-- Background Video -->
+  <div class="absolute inset-0 z-[-1] overflow-hidden">
+    <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80">
+      <source src="freecompress-VN20250612_153033.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-r from-[#4b0082] via-[#4b008270] to-transparent z-0"></div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-6 py-12 relative z-10 w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="text-center md:text-left" data-aos="fade-right">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#E6E6FA] leading-tight mb-6">
+          Unlock the Secrets of Your Stars
+        </h1>
+        <p class="text-lg md:text-xl text-[#E6E6FA] opacity-90 mb-8 max-w-xl">
+          Discover your cosmic path with personalized astrological insights.<br />
+          Let the stars guide your journey through life's mysteries.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <button class="glow-button px-6 py-3 bg-[#FFD700] text-[#4b0082] font-bold text-lg shadow-lg hover:shadow-[#FFD70050] transition-all duration-300 rounded-full">
+            Talk to an Astrologer
+          </button>
+          <button class="glow-button px-6 py-3 bg-transparent border-2 border-[#E6E6FA] text-[#E6E6FA] font-bold text-lg hover:border-[#FFD700] hover:text-[#FFD700] transition-all duration-300 rounded-full">
+            Check Horoscope
+          </button>
+        </div>
+      </div>
+      <div class="hidden md:block"></div>
+    </div>
+  </div>
+
+  <!-- Floating Zodiac Symbols -->
+  <div class="absolute top-1/4 right-1/4 w-12 h-12 text-[#FFD700] opacity-70 animate-bounce" style="animation-delay: 0s;">
+    <i class="ri-aries-line ri-2x"></i>
+  </div>
+  <div class="absolute top-2/3 right-1/3 w-10 h-10 text-[#FFD700] opacity-60 animate-bounce" style="animation-delay: 1s;">
+    <i class="ri-taurus-line ri-2x"></i>
+  </div>
+  <div class="absolute top-1/3 right-2/3 w-8 h-8 text-[#E6E6FA] opacity-50 animate-bounce" style="animation-delay: 2s;">
+    <i class="ri-gemini-line ri-2x"></i>
+  </div>
+  <div class="absolute top-3/4 right-1/2 w-10 h-10 text-[#E6E6FA] opacity-60 animate-bounce" style="animation-delay: 1.5s;">
+    <i class="ri-cancer-line ri-2x"></i>
+  </div>
+</section>
+
+
+
+
+
+    <!-- Daily Horoscope Section -->
+    <section id="horoscope" class="cosmic-bg py-20 relative">
+      <div class="absolute inset-0 bg-primary/50"></div>
+
+      <!-- Stars Background -->
+      <div id="stars" class="absolute inset-0"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-4">
+            Daily Horoscope
+          </h2>
+          <p class="text-lg text-[#E6E6FA] opacity-90 max-w-2xl mx-auto">
+            Explore your cosmic forecast and discover what the stars have
+            aligned for you today.
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <!-- Aries -->
+          <div class="zodiac-card rounded-lg p-6 text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-aries-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Aries</h3>
+            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
+              March 21 - April 19
+            </p>
+            <p class="text-[#E6E6FA] mb-4">
+              Today brings unexpected opportunities for growth. Be open to new
+              connections that could lead to exciting ventures.
+            </p>
+            <button
+              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+            >
+              Read More
+            </button>
+          </div>
+
+          <!-- Taurus -->
+          <div class="zodiac-card rounded-lg p-6 text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-taurus-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Taurus</h3>
+            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
+              April 20 - May 20
+            </p>
+            <p class="text-[#E6E6FA] mb-4">
+              Financial matters take center stage today. Trust your instincts
+              when making important decisions about investments.
+            </p>
+            <button
+              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+            >
+              Read More
+            </button>
+          </div>
+
+          <!-- Gemini -->
+          <div class="zodiac-card rounded-lg p-6 text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-gemini-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Gemini</h3>
+            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
+              May 21 - June 20
+            </p>
+            <p class="text-[#E6E6FA] mb-4">
+              Your communication skills are heightened today. Use this energy to
+              resolve any misunderstandings in your relationships.
+            </p>
+            <button
+              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+            >
+              Read More
+            </button>
+          </div>
+
+          <!-- Cancer -->
+          <div class="zodiac-card rounded-lg p-6 text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-cancer-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Cancer</h3>
+            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
+              June 21 - July 22
+            </p>
+            <p class="text-[#E6E6FA] mb-4">
+              Emotional balance is key today. Take time for self-care and
+              nurture your inner world to maintain harmony.
+            </p>
+            <button
+              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+            >
+              Read More
+            </button>
+          </div>
+
+          <!-- Leo -->
+          <div class="zodiac-card rounded-lg p-6 text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-leo-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Leo</h3>
+            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
+              July 23 - August 22
+            </p>
+            <p class="text-[#E6E6FA] mb-4">
+              Your creative energy is at its peak. Express yourself boldly and
+              don't be afraid to stand in the spotlight.
+            </p>
+            <button
+              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+            >
+              Read More
+            </button>
+          </div>
+
+          <!-- Virgo -->
+          <div class="zodiac-card rounded-lg p-6 text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-virgo-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Virgo</h3>
+            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
+              August 23 - September 22
+            </p>
+            <p class="text-[#E6E6FA] mb-4">
+              Focus on organization and planning today. Your attention to detail
+              will help you solve complex problems.
+            </p>
+            <button
+              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+            >
+              Read More
+            </button>
+          </div>
+
+          <!-- Libra -->
+          <div class="zodiac-card rounded-lg p-6 text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-libra-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Libra</h3>
+            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
+              September 23 - October 22
+            </p>
+            <p class="text-[#E6E6FA] mb-4">
+              Harmony in relationships is highlighted. Find balance between
+              giving and receiving in your partnerships.
+            </p>
+            <button
+              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+            >
+              Read More
+            </button>
+          </div>
+
+          <!-- Scorpio -->
+          <div class="zodiac-card rounded-lg p-6 text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-scorpio-line ri-3x"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#FFD700] mb-2">Scorpio</h3>
+            <p class="text-sm text-[#E6E6FA] opacity-80 mb-2">
+              October 23 - November 21
+            </p>
+            <p class="text-[#E6E6FA] mb-4">
+              Transformation is on the horizon. Embrace change and let go of
+              what no longer serves your highest good.
+            </p>
+            <button
+              class="px-4 py-2 bg-transparent border border-[#FFD700] text-[#FFD700] rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+            >
+              Read More
+            </button>
+          </div>
+        </div>
+
+        <div class="text-center mt-10">
+          <button
+            class="px-6 py-3 bg-[#FFD700] text-primary font-bold rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+          >
+            View All Horoscopes
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Astrology Services Section -->
+    <section id="services" class="cosmic-bg py-20 relative">
+      <div
+        class="absolute inset-0"
+        style="background-image: url('https://readdy.ai/api/search-image?query=cosmic%2520nebula%2520with%2520deep%2520purple%2520and%2520blue%2520colors%252C%2520subtle%2520star%2520field%252C%2520mystical%2520and%2520spiritual%2520atmosphere%252C%2520professional%2520digital%2520art%252C%2520high%2520quality%252C%2520perfect%2520for%2520astrology%2520website%2520background%252C%2520ethereal%2520cosmic%2520energy&width=1920&height=1080&seq=cosmic-bg-2&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.4;"
+      ></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-4">
+            Astrology Services
+          </h2>
+          <p class="text-lg text-[#E6E6FA] opacity-90 max-w-2xl mx-auto">
+            Discover personalized cosmic guidance to illuminate your path and
+            transform your life.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Birth Chart Analysis -->
+          <div class="service-card rounded-lg p-8 h-full">
+            <div
+              class="w-16 h-16 mb-6 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-planet-line ri-3x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-[#FFD700] mb-4">
+              Birth Chart Analysis
+            </h3>
+            <p class="text-[#E6E6FA] mb-6">
+              Unlock the cosmic blueprint of your life with a comprehensive
+              analysis of your natal chart. Discover your strengths, challenges,
+              and life purpose.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#FFD700] font-bold">$89.99</span>
+              <button
+                class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Relationship Compatibility -->
+          <div class="service-card rounded-lg p-8 h-full">
+            <div
+              class="w-16 h-16 mb-6 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-heart-line ri-3x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-[#FFD700] mb-4">
+              Relationship Compatibility
+            </h3>
+            <p class="text-[#E6E6FA] mb-6">
+              Explore the cosmic connection between you and your partner.
+              Understand your relationship dynamics, strengths, and growth
+              areas.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#FFD700] font-bold">$75.99</span>
+              <button
+                class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Career & Financial Forecast -->
+          <div class="service-card rounded-lg p-8 h-full">
+            <div
+              class="w-16 h-16 mb-6 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-briefcase-line ri-3x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-[#FFD700] mb-4">
+              Career & Financial Forecast
+            </h3>
+            <p class="text-[#E6E6FA] mb-6">
+              Navigate your professional journey with cosmic insights. Identify
+              optimal timing for career moves and financial investments.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#FFD700] font-bold">$69.99</span>
+              <button
+                class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Spiritual Guidance -->
+          <div class="service-card rounded-lg p-8 h-full">
+            <div
+              class="w-16 h-16 mb-6 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-mental-health-line ri-3x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-[#FFD700] mb-4">
+              Spiritual Guidance
+            </h3>
+            <p class="text-[#E6E6FA] mb-6">
+              Connect with your higher purpose and spiritual path. Receive
+              guidance on your soul's journey and karmic lessons.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#FFD700] font-bold">$79.99</span>
+              <button
+                class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Yearly Forecast -->
+          <div class="service-card rounded-lg p-8 h-full">
+            <div
+              class="w-16 h-16 mb-6 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-calendar-line ri-3x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-[#FFD700] mb-4">
+              Yearly Forecast
+            </h3>
+            <p class="text-[#E6E6FA] mb-6">
+              Prepare for the year ahead with a detailed forecast of planetary
+              influences. Plan your year with cosmic wisdom.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#FFD700] font-bold">$99.99</span>
+              <button
+                class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Vedic Remedies -->
+          <div class="service-card rounded-lg p-8 h-full">
+            <div
+              class="w-16 h-16 mb-6 text-[#FFD700] flex items-center justify-center"
+            >
+              <i class="ri-lotus-line ri-3x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-[#FFD700] mb-4">
+              Vedic Remedies
+            </h3>
+            <p class="text-[#E6E6FA] mb-6">
+              Harmonize challenging planetary influences with traditional Vedic
+              remedies. Balance your cosmic energies for optimal wellbeing.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-[#FFD700] font-bold">$59.99</span>
+              <button
+                class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Astrologer Section -->
+    <section id="astrologers" class="cosmic-bg py-20 relative">
+      <div class="absolute inset-0 bg-primary/70"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-4">
+            Connect with Expert Astrologers
+          </h2>
+          <p class="text-lg text-[#E6E6FA] opacity-90 max-w-2xl mx-auto">
+            Get personalized guidance from our certified astrologers through
+            live video consultations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Astrologer 1 -->
+          <div class="astrologer-card rounded-lg overflow-hidden">
+            <div class="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%2520female%2520astrologer%2520with%2520long%2520dark%2520hair%2520and%2520gentle%2520expression%252C%2520wearing%2520elegant%2520purple%2520outfit%2520with%2520celestial%2520jewelry%252C%2520against%2520a%2520subtle%2520cosmic%2520background%252C%2520looking%2520wise%2520and%2520approachable%252C%2520professional%2520portrait%2520photography&width=600&height=400&seq=astrologer-1&orientation=landscape"
+                alt="Astrologer"
+                class="w-full h-64 object-cover object-top"
+              />
+              <div
+                class="absolute top-4 right-4 flex items-center bg-green-500 text-white px-3 py-1 rounded-full text-sm"
+              >
+                <span class="w-2 h-2 bg-white rounded-full mr-2"></span>
+                Online
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-[#FFD700] mb-2">
+                Sophia Williams
+              </h3>
+              <p class="text-sm text-[#E6E6FA] opacity-80 mb-3">
+                Vedic Astrology Specialist • 15 Years Experience
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-[#FFD700]">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-half-fill"></i>
+                </div>
+                <span class="text-[#E6E6FA] ml-2">4.8 (352 reviews)</span>
+              </div>
+              <p class="text-[#E6E6FA] mb-6">
+                Specializes in relationship compatibility, career guidance, and
+                spiritual development. Known for accurate predictions and
+                practical remedies.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-[#FFD700] font-bold">$2.99/min</span>
+                <button
+                  class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+                >
+                  Call Now
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Astrologer 2 -->
+          <div class="astrologer-card rounded-lg overflow-hidden">
+            <div class="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%2520male%2520astrologer%2520with%2520short%2520gray%2520hair%2520and%2520beard%252C%2520wearing%2520traditional%2520Indian%2520outfit%2520with%2520modern%2520touch%252C%2520against%2520a%2520subtle%2520cosmic%2520background%252C%2520looking%2520wise%2520and%2520knowledgeable%252C%2520professional%2520portrait%2520photography&width=600&height=400&seq=astrologer-2&orientation=landscape"
+                alt="Astrologer"
+                class="w-full h-64 object-cover object-top"
+              />
+              <div
+                class="absolute top-4 right-4 flex items-center bg-green-500 text-white px-3 py-1 rounded-full text-sm"
+              >
+                <span class="w-2 h-2 bg-white rounded-full mr-2"></span>
+                Online
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-[#FFD700] mb-2">
+                Dr. Rajesh Sharma
+              </h3>
+              <p class="text-sm text-[#E6E6FA] opacity-80 mb-3">
+                Jyotish Acharya • 25 Years Experience
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-[#FFD700]">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+                <span class="text-[#E6E6FA] ml-2">5.0 (429 reviews)</span>
+              </div>
+              <p class="text-[#E6E6FA] mb-6">
+                Expert in Vedic astrology, gemstone recommendations, and
+                planetary remedies. Provides in-depth birth chart analysis with
+                practical solutions.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-[#FFD700] font-bold">$3.49/min</span>
+                <button
+                  class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+                >
+                  Call Now
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Astrologer 3 -->
+          <div class="astrologer-card rounded-lg overflow-hidden">
+            <div class="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%2520female%2520astrologer%2520with%2520blonde%2520hair%2520in%2520elegant%2520updo%252C%2520wearing%2520modern%2520celestial-inspired%2520outfit%2520with%2520star%2520motifs%252C%2520against%2520a%2520subtle%2520cosmic%2520background%252C%2520looking%2520insightful%2520and%2520compassionate%252C%2520professional%2520portrait%2520photography&width=600&height=400&seq=astrologer-3&orientation=landscape"
+                alt="Astrologer"
+                class="w-full h-64 object-cover object-top"
+              />
+              <div
+                class="absolute top-4 right-4 flex items-center bg-yellow-500 text-white px-3 py-1 rounded-full text-sm"
+              >
+                <span class="w-2 h-2 bg-white rounded-full mr-2"></span>
+                Busy
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-[#FFD700] mb-2">
+                Emma Thompson
+              </h3>
+              <p class="text-sm text-[#E6E6FA] opacity-80 mb-3">
+                Western & Evolutionary Astrology • 12 Years Experience
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-[#FFD700]">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-line"></i>
+                </div>
+                <span class="text-[#E6E6FA] ml-2">4.7 (301 reviews)</span>
+              </div>
+              <p class="text-[#E6E6FA] mb-6">
+                Blends Western and evolutionary astrology for holistic guidance.
+                Focuses on personal growth, life purpose, and transformational
+                journeys.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-[#FFD700] font-bold">$2.79/min</span>
+                <button
+                  class="px-4 py-2 bg-gray-400 text-gray-700 font-medium rounded-button cursor-not-allowed whitespace-nowrap !rounded-button"
+                >
+                  Notify Me
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <button
+            class="px-6 py-3 bg-transparent border-2 border-[#FFD700] text-[#FFD700] font-bold rounded-button hover:bg-[#FFD700] hover:text-primary transition-colors duration-300 whitespace-nowrap !rounded-button"
+          >
+            View All Astrologers
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="cosmic-bg py-20 relative">
+      <div
+        class="absolute inset-0"
+        style="background-image: url('https://readdy.ai/api/search-image?query=cosmic%2520nebula%2520with%2520deep%2520purple%252C%2520blue%2520and%2520subtle%2520gold%2520accents%252C%2520mystical%2520star%2520field%252C%2520ethereal%2520cosmic%2520clouds%252C%2520professional%2520digital%2520art%252C%2520high%2520quality%252C%2520perfect%2520for%2520astrology%2520website%2520background%252C%2520subtle%2520and%2520elegant&width=1920&height=1080&seq=cosmic-bg-3&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.3;"
+      ></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-4">
+            What Our Clients Say
+          </h2>
+          <p class="text-lg text-[#E6E6FA] opacity-90 max-w-2xl mx-auto">
+            Discover how our astrological insights have transformed lives and
+            guided important decisions.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card rounded-lg p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520middle-aged%2520woman%2520with%2520warm%2520smile%252C%2520business%2520casual%2520attire%252C%2520neutral%2520background%252C%2520natural%2520lighting%252C%2520professional%2520portrait%2520photography&width=200&height=200&seq=testimonial-1&orientation=squarish"
+                  alt="Client"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-[#FFD700]">
+                  Rebecca Anderson
+                </h4>
+                <p class="text-sm text-[#E6E6FA] opacity-80">
+                  Marketing Director
+                </p>
+              </div>
+            </div>
+            <div class="flex text-[#FFD700] mb-4">
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+            </div>
+            <p class="text-[#E6E6FA] italic">
+              "The birth chart analysis was incredibly accurate and insightful.
+              It helped me understand my career path and make important
+              decisions during a challenging transition. Dr. Sharma's guidance
+              was transformative."
+            </p>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card rounded-lg p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520young%2520man%2520with%2520short%2520dark%2520hair%2520and%2520friendly%2520smile%252C%2520business%2520casual%2520attire%252C%2520neutral%2520background%252C%2520natural%2520lighting%252C%2520professional%2520portrait%2520photography&width=200&height=200&seq=testimonial-2&orientation=squarish"
+                  alt="Client"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-[#FFD700]">Michael Chen</h4>
+                <p class="text-sm text-[#E6E6FA] opacity-80">
+                  Software Engineer
+                </p>
+              </div>
+            </div>
+            <div class="flex text-[#FFD700] mb-4">
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-half-fill"></i>
+            </div>
+            <p class="text-[#E6E6FA] italic">
+              "The relationship compatibility reading helped my partner and I
+              understand our dynamics better. We've improved our communication
+              significantly and learned to appreciate our differences. Truly
+              eye-opening!"
+            </p>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card rounded-lg p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520woman%2520in%2520her%252030s%2520with%2520curly%2520hair%2520and%2520confident%2520expression%252C%2520business%2520casual%2520attire%252C%2520neutral%2520background%252C%2520natural%2520lighting%252C%2520professional%2520portrait%2520photography&width=200&height=200&seq=testimonial-3&orientation=squarish"
+                  alt="Client"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-[#FFD700]">Priya Patel</h4>
+                <p class="text-sm text-[#E6E6FA] opacity-80">Entrepreneur</p>
+              </div>
+            </div>
+            <div class="flex text-[#FFD700] mb-4">
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+              <i class="ri-star-fill"></i>
+            </div>
+            <p class="text-[#E6E6FA] italic">
+              "The financial forecast was incredibly accurate. Following the
+              recommended timing for my business launch led to unexpected
+              success. I continue to consult before making major business
+              decisions."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="cosmic-bg py-20 relative">
+      <div class="absolute inset-0 bg-primary/80"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div
+          class="max-w-3xl mx-auto bg-[#1A1B4B]/70 backdrop-blur-md rounded-lg p-8 md:p-12 border border-[#E6E6FA30]"
+        >
+          <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#FFD700] mb-4">
+              Subscribe to Cosmic Insights
+            </h2>
+            <p class="text-[#E6E6FA] opacity-90">
+              Receive weekly horoscopes, astrological forecasts, and exclusive
+              offers directly to your inbox.
+            </p>
+          </div>
+
+          <form class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-[#E6E6FA] mb-2">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  class="w-full px-4 py-3 bg-[#2A1B3D]/50 border border-[#E6E6FA30] rounded focus:outline-none focus:border-[#FFD700] text-[#E6E6FA]"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-[#E6E6FA] mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-3 bg-[#2A1B3D]/50 border border-[#E6E6FA30] rounded focus:outline-none focus:border-[#FFD700] text-[#E6E6FA]"
+                  placeholder="Your email"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="birthdate" class="block text-[#E6E6FA] mb-2"
+                >Birth Date (optional)</label
+              >
+              <input
+                type="date"
+                id="birthdate"
+                class="w-full px-4 py-3 bg-[#2A1B3D]/50 border border-[#E6E6FA30] rounded focus:outline-none focus:border-[#FFD700] text-[#E6E6FA]"
+              />
+            </div>
+
+            <div>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox" />
+                <span class="text-[#E6E6FA] ml-3"
+                  >I agree to receive newsletters and promotional emails</span
+                >
+              </label>
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="px-6 py-3 bg-[#FFD700] text-primary font-bold rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button"
+              >
+                Subscribe Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="cosmic-bg pt-16 pb-8 relative">
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-[#1A1B4B] to-primary opacity-90"
+      ></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div>
+            <a
+              href="#"
+              class="text-3xl font-['Pacifico'] text-[#FFD700] mb-6 block"
+              >logo</a
+            >
+            <p class="text-[#E6E6FA] opacity-80 mb-6">
+              Guiding your cosmic journey with authentic astrological insights
+              since 2010.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-[#E6E6FA20] flex items-center justify-center text-[#E6E6FA] hover:bg-[#FFD700] hover:text-primary transition-colors duration-300"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-[#E6E6FA20] flex items-center justify-center text-[#E6E6FA] hover:bg-[#FFD700] hover:text-primary transition-colors duration-300"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-[#E6E6FA20] flex items-center justify-center text-[#E6E6FA] hover:bg-[#FFD700] hover:text-primary transition-colors duration-300"
+              >
+                <i class="ri-twitter-x-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-[#E6E6FA20] flex items-center justify-center text-[#E6E6FA] hover:bg-[#FFD700] hover:text-primary transition-colors duration-300"
+              >
+                <i class="ri-youtube-fill"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-bold text-[#FFD700] mb-6">Quick Links</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Daily Horoscope</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Compatibility Calculator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Astrology Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Vedic Remedies</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Astrologer Consultation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Astrology Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-bold text-[#FFD700] mb-6">Services</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Birth Chart Analysis</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Relationship Compatibility</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Career & Financial Forecast</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Spiritual Guidance</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Yearly Forecast</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300"
+                  >Vedic Remedies</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-bold text-[#FFD700] mb-6">Contact Us</h4>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-[#FFD700] mt-1 mr-3"
+                >
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <span class="text-[#E6E6FA]"
+                  >1234 Cosmic Way, Celestial Heights, CA 90210</span
+                >
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-[#FFD700] mr-3"
+                >
+                  <i class="ri-phone-line"></i>
+                </div>
+                <span class="text-[#E6E6FA]">+1 (555) 123-4567</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-[#FFD700] mr-3"
+                >
+                  <i class="ri-mail-line"></i>
+                </div>
+                <span class="text-[#E6E6FA]">contact@cosmicinsights.com</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-[#FFD700] mr-3"
+                >
+                  <i class="ri-time-line"></i>
+                </div>
+                <span class="text-[#E6E6FA]"
+                  >Open 24/7 for Online Consultations</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-[#E6E6FA30] pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-[#E6E6FA] opacity-70 mb-4 md:mb-0">
+              © 2025 Cosmic Insights. All rights reserved.
+            </p>
+            <div class="flex space-x-6">
+              <a
+                href="#"
+                class="text-[#E6E6FA] opacity-70 hover:text-[#FFD700] hover:opacity-100 transition-colors duration-300"
+                >Privacy Policy</a
+              >
+              <a
+                href="#"
+                class="text-[#E6E6FA] opacity-70 hover:text-[#FFD700] hover:opacity-100 transition-colors duration-300"
+                >Terms of Service</a
+              >
+              <a
+                href="#"
+                class="text-[#E6E6FA] opacity-70 hover:text-[#FFD700] hover:opacity-100 transition-colors duration-300"
+                >FAQ</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Zodiac Symbols -->
+      <div
+        class="absolute bottom-20 left-10 w-8 h-8 text-[#FFD700] opacity-30 floating"
+        style="animation-delay: 0.5s;"
+      >
+        <i class="ri-virgo-line ri-xl"></i>
+      </div>
+      <div
+        class="absolute bottom-40 left-20 w-6 h-6 text-[#FFD700] opacity-20 floating"
+        style="animation-delay: 1.5s;"
+      >
+        <i class="ri-libra-line ri-xl"></i>
+      </div>
+      <div
+        class="absolute bottom-30 right-10 w-10 h-10 text-[#FFD700] opacity-30 floating"
+        style="animation-delay: 2s;"
+      >
+        <i class="ri-scorpio-line ri-xl"></i>
+      </div>
+      <div
+        class="absolute bottom-60 right-20 w-8 h-8 text-[#FFD700] opacity-20 floating"
+        style="animation-delay: 0s;"
+      >
+        <i class="ri-sagittarius-line ri-xl"></i>
+      </div>
+    </footer>
+
+    <!-- Sound Control -->
+    <div
+      class="fixed bottom-6 right-6 z-50 bg-[#1A1B4B]/80 backdrop-blur-sm p-3 rounded-full border border-[#E6E6FA30] shadow-lg"
+    >
+      <label class="custom-switch">
+        <input type="checkbox" id="soundToggle" />
+        <span class="slider"></span>
+      </label>
+      <span class="text-[#E6E6FA] text-xs block mt-1 text-center">Sound</span>
+    </div>
+
+    <!-- Scripts -->
+    <script id="loadingAnimation">
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          const loadingScreen = document.getElementById("loadingScreen");
+          loadingScreen.style.opacity = "0";
+          setTimeout(function () {
+            loadingScreen.style.display = "none";
+          }, 500);
+        }, 2000);
+      });
+    </script>
+
+    <script id="starsAnimation">
+      document.addEventListener("DOMContentLoaded", function () {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 100;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          // Random size between 1px and 3px
+          const size = Math.random() * 2 + 1;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+
+          // Random position
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+
+          // Random animation delay
+          star.style.animationDelay = `${Math.random() * 5}s`;
+
+          starsContainer.appendChild(star);
+        }
+      });
+    </script>
+
+    <script id="soundControl">
+      document.addEventListener("DOMContentLoaded", function () {
+        const soundToggle = document.getElementById("soundToggle");
+        let audioElement = null;
+
+        soundToggle.addEventListener("change", function () {
+          if (this.checked) {
+            if (!audioElement) {
+              audioElement = new Audio();
+              audioElement.src =
+                "https://assets.mixkit.co/sfx/preview/mixkit-ambient-relaxing-sound-169.mp3";
+              audioElement.loop = true;
+              audioElement.volume = 0.2;
+            }
+            audioElement.play();
+          } else {
+            if (audioElement) {
+              audioElement.pause();
+            }
+          }
+        });
+      });
+    </script>
+
+    <script id="scrollAnimation">
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+              window.scrollTo({
+                top: targetSection.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

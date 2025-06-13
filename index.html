@@ -374,17 +374,18 @@
       </div>
     </div>
 
-  <!-- Header & Navigation -->
+ <!-- Header & Navigation -->
 <header class="fixed w-full z-50 bg-opacity-20 bg-primary backdrop-blur-md border-b border-[#E6E6FA30]">
   <div class="container mx-auto px-6 py-4">
     <div class="flex justify-between items-center">
+      <!-- Logo -->
       <div class="flex items-center">
-       <a href="#" class="inline-block">
-  <img src="piclumen-1749724188230-removebg-preview.png" alt="VedMantraGyan Logo" class="h-16 w-auto" />
-</a>
-
+        <a href="#" class="inline-block">
+          <img src="piclumen-1749724188230-removebg-preview.png" alt="VedMantraGyan Logo" class="h-16 w-auto" />
+        </a>
       </div>
 
+      <!-- Desktop Navigation -->
       <nav class="hidden md:flex space-x-8">
         <a href="#horoscope" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Horoscope</a>
         <a href="#services" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Services</a>
@@ -393,6 +394,7 @@
         <a href="#contact" class="nav-link text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Contact</a>
       </nav>
 
+      <!-- Right Buttons & Hamburger -->
       <div class="flex items-center space-x-4">
         <div class="w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition-colors duration-300">
           <i class="ri-search-line ri-lg"></i>
@@ -403,13 +405,50 @@
         <button class="hidden md:block px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap !rounded-button">
           Sign Up
         </button>
-        <div class="md:hidden w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition-colors duration-300">
+
+        <!-- Hamburger Icon (Mobile Only) -->
+        <div id="mobileMenuBtn" class="md:hidden w-10 h-10 flex items-center justify-center text-[#E6E6FA] hover:text-[#FFD700] cursor-pointer transition-colors duration-300">
           <i class="ri-menu-line ri-lg"></i>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div id="mobileNav" class="md:hidden hidden flex flex-col bg-primary/90 backdrop-blur-md border-t border-[#E6E6FA30] px-6 py-4 space-y-4">
+    <a href="#horoscope" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Horoscope</a>
+    <a href="#services" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Services</a>
+    <a href="#astrologers" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Live Connect</a>
+    <a href="#testimonials" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Testimonials</a>
+    <a href="#contact" class="text-[#E6E6FA] hover:text-[#FFD700] transition-colors duration-300">Contact</a>
+    <button class="px-4 py-2 text-[#E6E6FA] border border-[#E6E6FA50] rounded-button hover:border-[#FFD700] hover:text-[#FFD700] transition-colors duration-300">
+      Sign In
+    </button>
+    <button class="px-4 py-2 bg-[#FFD700] text-primary font-medium rounded-button hover:bg-opacity-90 transition-colors duration-300">
+      Sign Up
+    </button>
+  </div>
 </header>
+
+
+<!-- Toggle mobile scrept -->
+<script>
+  const menuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  // Toggle on hamburger click
+  menuBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('hidden');
+  });
+
+  // Close mobile menu on any link/button click inside it
+  mobileNav.querySelectorAll('a, button').forEach((item) => {
+    item.addEventListener('click', () => {
+      mobileNav.classList.add('hidden');
+    });
+  });
+</script>
+
 
 <!-- Hero Section -->
 <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-[80px]">
@@ -1446,16 +1485,29 @@
       </div>
     </footer>
 
-    <!-- Sound Control -->
-    <div
-      class="fixed bottom-6 right-6 z-50 bg-[#1A1B4B]/80 backdrop-blur-sm p-3 rounded-full border border-[#E6E6FA30] shadow-lg"
-    >
-      <label class="custom-switch">
-        <input type="checkbox" id="soundToggle" />
-        <span class="slider"></span>
-      </label>
-      <span class="text-[#E6E6FA] text-xs block mt-1 text-center">Sound</span>
-    </div>
+    <!-- Scroll to Top Button -->
+<div
+  class="fixed bottom-6 right-6 z-50 bg-[#FFD700] p-4 rounded-full shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+  onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="black"
+    stroke-width="2"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+  </svg>
+</div>
+
+
+<script>
+  document.getElementById("scrollToTopBtn").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
 
     <!-- Scripts -->
     <script id="loadingAnimation">

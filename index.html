@@ -544,48 +544,73 @@
 
 <!-- About Us Section -->
 <section id="about" class="cosmic-bg py-20 relative">
+  <!-- Background Layers -->
   <div class="absolute inset-0" style="background-image: url('https://readdy.ai/api/search-image?query=cosmic%2520nebula%2520with%2520deep%2520purple%2520and%2520blue%2520colors%252C%2520subtle%2520star%2520field%252C%2520mystical%2520and%2520spiritual%2520atmosphere%252C%2520professional%2520digital%2520art%252C%2520high%2520quality%252C%2520perfect%2520for%2520astrology%2520website%2520background%252C%2520ethereal%2520cosmic%2520energy&width=1920&height=1080&seq=cosmic-bg-2&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.4;"></div>
   <div class="absolute inset-0 bg-primary/70"></div>
 
+  <!-- Main Container -->
   <div class="container mx-auto px-6 relative z-10">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-8">
-       Ved Mantra Gyan is one stop solution for your every spiritual quest   
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-12">
+        Ved Mantra Gyan is one stop solution for your every spiritual quest
       </h2>
 
-      <div class="text-left text-lg text-[#E6E6FA] opacity-90 space-y-6" style="text-align: justify;">
-  <p>
-    Ved Mantra gyan is a sister concern venture of Chote Sai Charitable Trust
-  </p>
-
-  <p>
-    VedMantra Gyan is initiated with a belief in offering holistic growth of mankind—encompassing all dimensions of
-    life: physical, mental, emotional, and spiritual. Guided by this vision, we are
-    dedicated to share the profound wisdom of the Vedas and other ancient spiritual traditions.
-  </p>
-
-  <p>
-    Through sacred teachings, rituals and personalized guidance, we strive to help
-    individuals to reconnect with their inner self, align with cosmic
-    energies, and lead a life rooted with a purpose, clarity and balance.
-  </p>
-</div>
-
-
-        <!-- Toggle Button -->
-        <div class="text-center pt-6">
-          <button
-            onclick="toggleAboutContent()"
-            id="toggleBtn"
-            class="bg-[#FFD700] text-[#4b0082] px-6 py-2 rounded-full text-base font-semibold hover:bg-[#e6c200] transition"
-          >
-            View More
-          </button>
+      <!-- Flex container -->
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-10 text-left">
+        <!-- Left: Text Content -->
+        <div class="md:w-1/2 text-lg text-[#E6E6FA] opacity-90 space-y-6" style="text-align: justify;">
+          <p>
+            Ved Mantra gyan is a sister concern venture of Chote Sai Charitable Trust
+          </p>
+          <p>
+            VedMantra Gyan is initiated with a belief in offering holistic growth of mankind—encompassing all dimensions of
+            life: physical, mental, emotional, and spiritual. Guided by this vision, we are
+            dedicated to share the profound wisdom of the Vedas and other ancient spiritual traditions.
+          </p>
+          <p>
+            Through sacred teachings, rituals and personalized guidance, we strive to help
+            individuals to reconnect with their inner self, align with cosmic
+            energies, and lead a life rooted with a purpose, clarity and balance.
+          </p>
         </div>
+
+        <!-- Right: Rotating Image -->
+        <div class="md:w-1/2 flex justify-center">
+          <img 
+            src="image/rotation.png" 
+            alt="Spiritual Guidance" 
+            class="rounded-xl  w-full max-w-md h-auto object-cover animate-spin-slow"
+          >
+        </div>
+      </div>
+
+      <!-- Toggle Button -->
+      <div class="text-center pt-10">
+        <button
+          onclick="toggleAboutContent()"
+          id="toggleBtn"
+          class="bg-[#FFD700] text-[#4b0082] px-6 py-2 rounded-full text-base font-semibold hover:bg-[#e6c200] transition"
+        >
+          View More
+        </button>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Custom Rotation Animation -->
+<style>
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+</style>
+>
+
 
 <!-- Script to toggle content -->
 <script>
@@ -804,33 +829,32 @@
   <!-- Background Image -->
   <div
     class="absolute inset-0"
-    style="background-image: url('https://readdy.ai/api/search-image?query=cosmic%2520nebula%2520with%2520deep%2520purple%252C%2520blue%2520and%2520subtle%2520gold%2520accents%252C%2520mystical%2520star%2520field%252C%2520ethereal%2520cosmic%2520clouds%252C%2520professional%2520digital%2520art%252C%2520high%2520quality%252C%2520perfect%2520for%2520astrology%2520website%2520background%252C%2520subtle%2520and%2520elegant&width=1920&height=1080&seq=cosmic-bg-3&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.3;"
-  ></div>
+    style="background-image: url('https://readdy.ai/api/search-image?query=cosmic%2520nebula%2520with%2520deep%2520purple%252C%2520blue%2520and%2520subtle%2520gold%2520accents%252C%2520mystical%2520star%2520field%252C%2520ethereal%2520cosmic%2520clouds%252C%2520professional%2520digital%2520art%252C%2520high%2520quality%252C%2520perfect%2520for%2520astrology%2520website%2520background%252C%2520subtle%2520and%2520elegant&width=1920&height=1080'); background-size: cover; background-position: center; opacity: 0.3;">
+  </div>
 
   <!-- Heading -->
-  <div class="container mx-auto px-6 relative z-10 text-center mb-16">
-    <h2 class="text-3xl md:text-4xl font-bold text-[#FFD700] mb-4">
+  <div class="container mx-auto px-4 sm:px-6 relative z-10 text-center mb-12">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#FFD700] mb-4">
       What Our Clients Say
     </h2>
-    <p class="text-lg text-[#E6E6FA] opacity-90 max-w-2xl mx-auto">
+    <p class="text-base sm:text-lg text-[#E6E6FA] opacity-90 max-w-2xl mx-auto">
       Discover how our astrological insights have transformed lives and guided important decisions.
     </p>
   </div>
 
   <!-- Scrolling Wrapper -->
   <div class="relative z-10">
-    <div class="scroll-container flex whitespace-nowrap overflow-hidden animate-scroll">
-
-      <!-- Duplicate for seamless loop -->
-      <div class="flex min-w-max space-x-6 px-6">
-        <!-- Repeatable Card -->
-        <div class="testimonial-card w-72 md:w-80 bg-[#ffffff0d] p-6 rounded-lg snap-start flex-shrink-0 overflow-hidden">
+    <div class="scroll-container flex overflow-hidden animate-scroll">
+      <!-- Duplicate set for looping -->
+      <div class="flex min-w-max space-x-4 sm:space-x-6 px-4 sm:px-6">
+        <!-- Testimonial Card -->
+        <div class="testimonial-card bg-[#ffffff0d] w-64 sm:w-72 md:w-80 p-4 sm:p-6 rounded-lg flex-shrink-0 overflow-hidden">
           <div class="flex items-center mb-4">
-            <div class="w-14 h-14 rounded-full overflow-hidden mr-4">
+            <div class="w-14 h-14 rounded-full overflow-hidden mr-3">
               <img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520middle-aged%2520woman..." alt="Client" class="w-full h-full object-cover object-top" />
             </div>
             <div>
-              <h4 class="text-base font-bold text-[#FFD700]">Rebecca Anderson</h4>
+              <h4 class="text-base font-semibold text-[#FFD700]">Rebecca Anderson</h4>
               <p class="text-xs text-[#E6E6FA] opacity-80">Marketing Director</p>
             </div>
           </div>
@@ -842,13 +866,14 @@
           </p>
         </div>
 
-        <div class="testimonial-card w-72 md:w-80 bg-[#ffffff0d] p-6 rounded-lg snap-start flex-shrink-0 overflow-hidden">
+        <!-- Card 2 -->
+        <div class="testimonial-card bg-[#ffffff0d] w-64 sm:w-72 md:w-80 p-4 sm:p-6 rounded-lg flex-shrink-0 overflow-hidden">
           <div class="flex items-center mb-4">
-            <div class="w-14 h-14 rounded-full overflow-hidden mr-4">
-              <img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520young%2520man..." alt="Client" class="w-full h-full object-cover object-top" />
+            <div class="w-14 h-14 rounded-full overflow-hidden mr-3">
+              <img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520young%2520man..." alt="Client" class="w-full h-full object-cover" />
             </div>
             <div>
-              <h4 class="text-base font-bold text-[#FFD700]">Michael Chen</h4>
+              <h4 class="text-base font-semibold text-[#FFD700]">Michael Chen</h4>
               <p class="text-xs text-[#E6E6FA] opacity-80">Software Engineer</p>
             </div>
           </div>
@@ -860,13 +885,14 @@
           </p>
         </div>
 
-        <div class="testimonial-card w-72 md:w-80 bg-[#ffffff0d] p-6 rounded-lg snap-start flex-shrink-0 overflow-hidden">
+        <!-- Card 3 -->
+        <div class="testimonial-card bg-[#ffffff0d] w-64 sm:w-72 md:w-80 p-4 sm:p-6 rounded-lg flex-shrink-0 overflow-hidden">
           <div class="flex items-center mb-4">
-            <div class="w-14 h-14 rounded-full overflow-hidden mr-4">
-              <img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520woman%2520in%2520her%252030s..." alt="Client" class="w-full h-full object-cover object-top" />
+            <div class="w-14 h-14 rounded-full overflow-hidden mr-3">
+              <img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520woman%2520in%2520her%252030s..." alt="Client" class="w-full h-full object-cover" />
             </div>
             <div>
-              <h4 class="text-base font-bold text-[#FFD700]">Priya Patel</h4>
+              <h4 class="text-base font-semibold text-[#FFD700]">Priya Patel</h4>
               <p class="text-xs text-[#E6E6FA] opacity-80">Entrepreneur</p>
             </div>
           </div>
@@ -879,10 +905,9 @@
         </div>
       </div>
 
-      <!-- Duplicate block for infinite loop -->
-      <div class="flex min-w-max space-x-6 px-6">
-        <!-- Repeat the same 3 testimonial cards again -->
-        <!-- Or add more for variety -->
+      <!-- Duplicate block again for infinite loop -->
+      <div class="flex min-w-max space-x-4 sm:space-x-6 px-4 sm:px-6">
+        <!-- Repeat same 3 cards or use more -->
       </div>
     </div>
   </div>
@@ -890,14 +915,19 @@
   <!-- Scroll Animation -->
   <style>
     @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
     .animate-scroll {
-      animation: scroll 40s linear infinite;
+      animation: scroll 10s linear infinite;
     }
   </style>
 </section>
+
 
 
 
